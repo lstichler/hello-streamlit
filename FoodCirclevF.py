@@ -27,6 +27,7 @@ set_bg_image()
 st.image("Logo Food Cirlce.png", width=150)
 
 # Aufrufen der Yelp-API, um Restaurants basierend auf eine gegebene Location 
+# Source: https://docs.streamlit.io/develop/api-reference, Chat GPT by OpenAI basierend auf unserenm ersten Pythone Grundcode mit dem Dateinamen cs-projekt 11.1 vf
 def get_restaurants(location):
     url = "https://api.yelp.com/v3/businesses/search"
     headers = {
@@ -51,6 +52,7 @@ def get_restaurants(location):
         return pd.DataFrame()
 
 # Zeigen des Titels der Anwendung
+# Source: https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state
 def main():
     st.title("FoodCircle")
     
