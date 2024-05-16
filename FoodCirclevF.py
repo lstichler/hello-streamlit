@@ -4,6 +4,7 @@ import pandas as pd
 import requests
 
 # Definition des Hintergrundbildes der Anwendung mit HTML
+# Source: https://discuss.streamlit.io/t/how-do-i-use-a-background-image-on-streamlit/5067/5
 def set_bg_image():
     st.markdown(
         """
@@ -21,7 +22,8 @@ def set_bg_image():
 # Aufrufen der zuvor definierten Funktion, um das Hintergrundbild zu setzen
 set_bg_image()
 
-# Zeigen des Logos in der Anwendung mit einer Breite von 150 Pixeln
+# Anzeigen des Logos
+# Source: https://docs.streamlit.io/develop/api-reference/media/st.image
 st.image("Logo Food Cirlce.png", width=150)
 
 # Aufrufen der Yelp-API, um Restaurants basierend auf eine gegebene Location 
