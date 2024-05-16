@@ -96,8 +96,6 @@ def main():
                 st.subheader("All Reviews:")
                 
                 # Der Benutzer kann nach Namen und Bewertungen filtern
-                # Source: https://docs.streamlit.io/develop/api-reference/widgets/st.slider, Assistance from Chat GPT by OpenAi
-                # Prompt: How can we write a code that filters a Data frame in Streamlit?
                 filter_name = st.text_input("Filter by name")
                 filter_rating = st.slider("Filter by rating", 1, 5, (1, 5), step=1)
                 
@@ -112,7 +110,6 @@ def main():
                 for restaurant_id in filtered_reviews['Restaurant ID']:
                     try:
                         # Die Koordinaten der gefilterten Restaurants werden auf einer Karte angezeigt
-                        # Source: https://docs.streamlit.io/develop/api-reference/charts/st.map
                         restaurant_coords = restaurants_df[restaurants_df['id'] == restaurant_id][['lat', 'lon']].iloc[0]
                         coords.loc[len(coords)] = restaurant_coords
                     except Exception as e:
@@ -124,6 +121,5 @@ def main():
             st.write("No restaurants found in this location.")
 
 # Die main-Funktion wird nur ausgeführt, wenn das Skript direkt aufgerufen wird und nicht, wenn es als Modul importiert wird
-        if __name__ == "__main__":
-        main()
-
+if __name__ == "__main__":
+    main()
