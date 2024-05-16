@@ -65,7 +65,7 @@ def get_restaurants(location):
 def main():
     st.title("FoodCircle")
     
-    # Diese Zeile überprüft, ob in der aktuellen Sitzung eine Tabelle für Bewertungen existiert. Wenn nicht, wird eine leere Tabelle mit den Spalten Restaurant, Comment, Name, Rating und Restaurant ID erstellt.
+    # Diese Zeile überprüft, ob in der aktuellen Session eine Tabelle für Bewertungen existiert. Wenn nicht, wird eine leere Tabelle mit den Spalten Restaurant, Comment, Name, Rating und Restaurant ID erstellt.
     if 'reviews' not in st.session_state:
         st.session_state.reviews = pd.DataFrame(columns=['Restaurant', 'Comment', 'Name', 'Rating', 'Restaurant ID'])
 
