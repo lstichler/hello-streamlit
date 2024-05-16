@@ -103,7 +103,7 @@ def main():
                 filter_rating = st.slider("Filter by rating", 1, 5, (1, 5), step=1)
                 
                 # Die gefilterten Bewertungen werden in einer Tabelle angezeigt
-                Source: https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state
+                # Source: https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state
                 filtered_reviews = st.session_state.reviews
                 if filter_name:
                     filtered_reviews = filtered_reviews[filtered_reviews['Name'].str.contains(filter_name, case=False)]
