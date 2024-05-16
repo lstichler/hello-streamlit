@@ -1,5 +1,5 @@
 #DISCLAIMER: Die beiden Studentinnen, die den Code erstellt haben (Elena Maehrle und Alina Bricker), verfügten bereits vor dem Kurs gute Programmierkenntnisse 
-#Daher brauchten sie nicht so viel externe Hilfe von Websites oder Chatgtp, aber wo solche Externe Hilfe beansprucht wurde, wurde es klar gekennzeichnet.  
+#Daher brauchten sie nicht so viel externe Hilfe von Websites oder Chatgtp, aber wo solche Externe Hilfe beansprucht wurde, wurde es klar gekennzeichnet
 
 # Importieren der benötigten Libaries
 import streamlit as st
