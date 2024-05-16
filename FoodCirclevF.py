@@ -123,4 +123,7 @@ def main():
         else:
             st.write("No restaurants found in this location.")
 
+# Die main-Funktion wird nur ausgeführt, wenn das Skript direkt aufgerufen wird und nicht, wenn es als Modul importiert wird
+        if __name__ == "__main__":
+        main()
 
