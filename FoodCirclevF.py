@@ -52,7 +52,7 @@ def get_restaurants(location):
         return pd.DataFrame()
 
 # Zeigen des Titels der Anwendung
-# Source: https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state
+# Source: https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state, https://docs.streamlit.io/develop/api-reference/data/st.dataframe
 def main():
     st.title("FoodCircle")
     
