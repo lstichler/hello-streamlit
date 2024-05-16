@@ -75,6 +75,7 @@ def main():
             rating = st.slider("Your rating", 1, 5, 1)
             
             # Der Nutzer drückt den Submit Button
+            # Source: https://pandas.pydata.org/docs/reference/api/pandas.concat.html
             submit_pressed = st.button("Submit Review")
             if submit_pressed:
                 new_review = pd.DataFrame([{
@@ -91,15 +92,18 @@ def main():
                 st.subheader("Recently Submitted Review:")
                 st.table(st.session_state.reviews.tail(1)) 
 
-            # Wenn Bewertungen vorhanden sind, zeigt die Anwendung alle Bewertungen an
+            # Bewertungen werden angezeigt
             if not st.session_state.reviews.empty:
                 st.subheader("All Reviews:")
                 
-                # Der Benutzer kann nach Namen und Bewertungen filtern
+                # Benutzer kann nach Namen und Bewertungen filtern
+                # Source: Chat GPT by Open AI
+                # Prompt: How can we filter the submitted reviews? 
                 filter_name = st.text_input("Filter by name")
                 filter_rating = st.slider("Filter by rating", 1, 5, (1, 5), step=1)
                 
                 # Die gefilterten Bewertungen werden in einer Tabelle angezeigt
+                Source: https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state
                 filtered_reviews = st.session_state.reviews
                 if filter_name:
                     filtered_reviews = filtered_reviews[filtered_reviews['Name'].str.contains(filter_name, case=False)]
@@ -109,7 +113,8 @@ def main():
                 coords = pd.DataFrame(columns=['lat', 'lon'])
                 for restaurant_id in filtered_reviews['Restaurant ID']:
                     try:
-                        # Die Koordinaten der gefilterten Restaurants werden auf einer Karte angezeigt
+                        # Die gefilterten Restaurants werden auf einer Karte angezeigt
+                        # Source: https://docs.streamlit.io/develop/api-reference/charts/st.map
                         restaurant_coords = restaurants_df[restaurants_df['id'] == restaurant_id][['lat', 'lon']].iloc[0]
                         coords.loc[len(coords)] = restaurant_coords
                     except Exception as e:
