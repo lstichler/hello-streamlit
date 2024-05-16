@@ -1,9 +1,9 @@
-# Importieren der benötigten Bibliotheken
+# Importieren der benötigten Libaries
 import streamlit as st
 import pandas as pd
 import requests
 
-# Definition des Hintergrundbildes der Anwendung mit HTML
+# Definition des Hintergrundbildes 
 # Source: https://discuss.streamlit.io/t/how-do-i-use-a-background-image-on-streamlit/5067/5
 def set_bg_image():
     st.markdown(
@@ -19,7 +19,7 @@ def set_bg_image():
         unsafe_allow_html=True
     )
 
-# Aufrufen der zuvor definierten Funktion, um das Hintergrundbild zu setzen
+# Aufrufen der zuvor definierten Funktion
 set_bg_image()
 
 # Anzeigen des Logos
@@ -52,7 +52,7 @@ def get_restaurants(location):
         return pd.DataFrame()
 
 # Zeigen des Titels der Anwendung
-# Source: https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state, https://docs.streamlit.io/develop/api-reference/data/st.dataframe
+# Source: https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state, https://docs.streamlit.io/develop/api-reference/data/st.dataframe, ChatGPT by OpenAI zur Behebung von Fehlern im Code
 def main():
     st.title("FoodCircle")
     
@@ -63,7 +63,6 @@ def main():
     # Der Benutzer gibt einen Ort ein
     location = st.text_input("Enter a location (e.g., 'San Francisco')", "")
     if location:
-        # Restaurants in der API in der Location suchen
         restaurants_df = get_restaurants(location)
         if not restaurants_df.empty:
             # Wenn Restaurants gefunden wurden, kann der Benutzer ein Restaurant auswählen 
@@ -78,7 +77,6 @@ def main():
             # Der Nutzer drückt den Submit Button
             submit_pressed = st.button("Submit Review")
             if submit_pressed:
-                # Wenn der Benutzer auf den Button klickt, wird die Bewertung in der Tabelle gespeichert und eine Erfolgsmeldung angezeigt 
                 new_review = pd.DataFrame([{
                     'Restaurant': restaurant_choice,
                     'Comment': comment,
