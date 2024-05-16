@@ -1,3 +1,6 @@
+#DISCLAIMER: Die beiden Studentinnen, die den Code erstellt haben (Elena Maehrle und Alina Bricker), verfügten bereits vor dem Kurs gute Programmierkenntnisse 
+#Daher brauchten sie nicht so viel externe Hilfe von Websites oder Chatgtp, aber wo solche Externe Hilfe beansprucht wurde, wurde es klar gekennzeichnet.  
+
 # Importieren der benötigten Libaries
 import streamlit as st
 import pandas as pd
@@ -27,12 +30,16 @@ set_bg_image()
 st.image("Logo Food Cirlce.png", width=150)
 
 # Aufrufen der Yelp-API, um Restaurants basierend auf eine gegebene Location 
-# Source: https://docs.streamlit.io/develop/api-reference, Chat GPT by OpenAI basierend auf unserenm ersten Pythone Grundcode mit dem Dateinamen cs-projekt 11.1 vf
+# Source: https://docs.streamlit.io/develop/api-reference, ource: How to use API, help from chatgtp, prompt: "I want to work with this API: https://api.yelp.com/v3/businesses/search
+#                                                              I have an api key and authorization, but I haven't been able yet to figure out how to actually call 
+#                                                               on the function and then receive output. could you provide me with the first coding steps for how to call the api "
+
 def get_restaurants(location):
+    # URL der API
     url = "https://api.yelp.com/v3/businesses/search"
     headers = {
         "Authorization": "Bearer 6fvAUhr3oMOOOEmGybAjxAoqlAmWx31FhbvGnWw5R8jIhAfvIZVSXmT4GFYMeJsGKwb-0zX_pfD_CMpIVtEzHBdZ10EZ-fvzHkb_PYhtiJ9BHx4Ng359IGfz8Ak-ZnYx",
-        # Ein Kommilitone half uns beim Zugriff auf die API, nachdem wir einen neuen API-Schlüssel erhalten hatten 
+        # Verwendung eines User Agent, da es nur mit dem Authorization Key nicht funktioniert hat, sprich die API hat keinen Output returned. 
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36",
         "accept": "application/json"
     }
@@ -41,8 +48,10 @@ def get_restaurants(location):
         "location": location
     }
     response = requests.get(url, headers=headers, params=params)
+    # Umwandlung in json
     data = response.json()
     if data and "businesses" in data:
+        # Umwandung von nur businesses in ein pandas data frame
         df = pd.DataFrame(data["businesses"])
         # Längen- und Breitengrad extrahieren, wenn Koordinaten vorhanden sind
         df['lat'] = df['coordinates'].apply(lambda x: x.get('latitude') if isinstance(x, dict) else None)
@@ -69,7 +78,7 @@ def main():
             restaurant_choice = st.selectbox("Select a restaurant", restaurants_df['name'])
             restaurant_id = restaurants_df[restaurants_df['name'] == restaurant_choice]['id'].iloc[0]
             
-            # Der Benutzer gibt seinen Namen, seinen Kommentar und seine Bewertung ein.
+            # Der Benutzer gibt seinen Namen, seinen Kommentar und seine Bewertung ein
             name = st.text_input("Your name")
             comment = st.text_area("Your comment")
             rating = st.slider("Your rating", 1, 5, 1)
